@@ -1,0 +1,24 @@
+cmake_minimum_required(VERSION 3.15)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_BUILD_TYPE Debug)
+
+project(Pokemon)
+
+
+add_executable(
+  ${PROJECT_NAME} src/core/Pokemon.cpp src/core/Application.cpp
+  src/logic/Logic.cpp src/draw/Draw.cpp)
+
+target_include_directories(
+  ${PROJECT_NAME} PUBLIC build/_deps/raylib-src/src include)
+find_library(raylib raylib PATHS build/_deps/raylib-build/raylib)
+
+target_link_libraries(${PROJECT_NAME} ${raylib})
+
+# Checks if OSX and links appropriate frameworks (Only required on MacOS)
+if (APPLE)
+    target_link_libraries(${PROJECT_NAME} "-framework IOKit")
+    target_link_libraries(${PROJECT_NAME} "-framework Cocoa")
+    target_link_libraries(${PROJECT_NAME} "-framework OpenGL")
+endif()

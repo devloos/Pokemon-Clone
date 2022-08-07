@@ -1,0 +1,13 @@
+{
+  "env": {
+    "myDefaultIncludePath": ["${workspaceFolder}", "${workspaceFolder}/include"]
+  },
+  "configurations": [
+    { 
+      "name": "mac",
+      "includePath": ["${myDefaultIncludePath}", 
+          "${workspaceFolder}/build/_deps/raylib-src/src"]
+    }
+  ],
+  "version": 4
+}
