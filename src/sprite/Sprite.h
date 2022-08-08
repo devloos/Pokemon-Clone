@@ -19,12 +19,12 @@ class Sprite {
   bool m_InAnimation;
 
  private:
-  float height_;
   float timer_;
   float frameWidth_;
+  float height_;
   float frameHeight_;
-  int maxFrames_;
   int frame_;
+  int maxFrames_;
 };
 
 #endif  // NAMI_H_
