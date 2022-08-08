@@ -2,23 +2,35 @@
 
 namespace Logic {
 void Start(float &x, float &y, Sprite &nami) {
+  if (KeysPressedSimultaneously()) {
+    nami.m_InAnimation = false;
+    return;
+  }
+
   if (IsKeyDown(KEY_LEFT)) {
-    x += GetFrameTime() * 100.0f;
+    x += GetFrameTime() * SPRITE_SPEED;
     nami.m_StateDir_ = Direction::kLeft;
-  }
-  // spritedir = left
-  // is it animated or did they just oress the key down  nce
-  if (IsKeyDown(KEY_RIGHT)) {
-    x -= GetFrameTime() * 100.0f;
+  } else if (IsKeyDown(KEY_RIGHT)) {
+    x -= GetFrameTime() * SPRITE_SPEED;
     nami.m_StateDir_ = Direction::kRight;
-  }
-  if (IsKeyDown(KEY_DOWN)) {
-    y -= GetFrameTime() * 100.0f;
+  } else if (IsKeyDown(KEY_DOWN)) {
+    y -= GetFrameTime() * SPRITE_SPEED;
     nami.m_StateDir_ = Direction::kForward;
-  }
-  if (IsKeyDown(KEY_UP)) {
-    y += GetFrameTime() * 100.0f;
+  } else if (IsKeyDown(KEY_UP)) {
+    y += GetFrameTime() * SPRITE_SPEED;
     nami.m_StateDir_ = Direction::kBackward;
+  } else {
+    nami.m_InAnimation = false;
+    return;
   }
+  nami.m_InAnimation = true;
+  return;
+}
+
+bool KeysPressedSimultaneously() {
+  return IsKeyDown(KEY_LEFT) && IsKeyDown(KEY_UP) ||
+         IsKeyDown(KEY_LEFT) && IsKeyDown(KEY_DOWN) ||
+         IsKeyDown(KEY_RIGHT) && IsKeyDown(KEY_UP) ||
+         IsKeyDown(KEY_RIGHT) && IsKeyDown(KEY_DOWN);
 }
 }  // namespace Logic

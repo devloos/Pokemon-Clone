@@ -1,9 +1,9 @@
 #include "Sprite.h"
 
-Sprite::Sprite() {
-  m_StateDir_ = Direction::kForward;
-  NamiWalkingSheet_ = LoadTexture("../assets/sprites/NamiWalkingState.png");
-
+Sprite::Sprite()
+    : m_StateDir_(Direction::kForward),
+      NamiWalkingSheet_(LoadTexture("../assets/sprites/NamiWalkingState.png")),
+      m_InAnimation(false) {
   frameWidth_ = NamiWalkingSheet_.width / 3.0f;
   frameHeight_ = NamiWalkingSheet_.height / 4.0f;
   maxFrames_ = NamiWalkingSheet_.width / (int)frameWidth_;
@@ -12,7 +12,11 @@ Sprite::Sprite() {
 Sprite::~Sprite() { UnloadTexture(NamiWalkingSheet_); }
 
 void Sprite::Draw(const float &CENTER_X, const float &CENTER_Y, const float &ROTATION) {
-  this->Logic();
+  if (m_InAnimation) {
+    this->Logic();
+  } else {
+    frame_ = 1;
+  }
   DrawTextureTiled(
       NamiWalkingSheet_,
       Rectangle{(frameWidth_ * frame_), height_, (frameWidth_), (frameHeight_)},
