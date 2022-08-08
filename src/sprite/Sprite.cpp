@@ -35,11 +35,11 @@ void Sprite::Logic() {
 
   switch (this->DirectionState_) {
     case Direction::kForward: {
-      height_ = (frameHeight_ * 0.0f);
+      height_ = (frameHeight_ * 2.0f);
       break;
     }
     case Direction::kBackward: {
-      height_ = (frameHeight_ * 2.0f);
+      height_ = (frameHeight_ * 0.0f);
       break;
     }
     case Direction::kLeft: {
@@ -51,7 +51,7 @@ void Sprite::Logic() {
       break;
     }
     default: {
-      height_ = (frameHeight_ * 0.0f);
+      height_ = (frameHeight_ * 2.0f);
       break;
     }
   }
