@@ -1,5 +1,5 @@
-#ifndef NAMI_H_
-#define NAMI_H_
+#ifndef SPRITE_H_
+#define SPRITE_H_
 
 #include <raylib.h>
 
@@ -28,4 +28,4 @@ class Sprite {
   int maxFrames_;
 };
 
-#endif  // NAMI_H_
+#endif  // SPRITE_H_
