@@ -2,6 +2,8 @@
 #define LOGIC_H_
 #include <raylib.h>
 
+#include "../nami/Nami.h"
+
 namespace Logic {
 /**
  * @brief
@@ -9,7 +11,7 @@ namespace Logic {
  * @param x
  * @param y
  */
-void Start(float &x, float &y);
+void Start(float &x, float &y, Nami &namiObj);
 }  // namespace Logic
 
 #endif  // LOGIC_H_
