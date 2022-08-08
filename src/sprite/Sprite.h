@@ -9,14 +9,7 @@ enum struct Direction { kForward, kBackward, kLeft, kRight };
 
 class Sprite {
  public:
-  Sprite()
-      : m_StateDir_(Direction::kForward),
-        NamiWalkingSheet_(LoadTexture("../assets/sprites/NamiWalkingState.png")),
-        m_InAnimation(false) {
-    frameWidth_ = NamiWalkingSheet_.width / 3.0f;
-    frameHeight_ = NamiWalkingSheet_.height / 4.0f;
-    maxFrames_ = NamiWalkingSheet_.width / (int)frameWidth_;
-  }
+  Sprite();
   ~Sprite();
   void Draw(const float &CENTER_X, const float &CENTER_Y, const float &ROTATION);
   void Logic();
