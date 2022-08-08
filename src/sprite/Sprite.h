@@ -21,8 +21,8 @@ class Sprite {
  private:
   float timer_;
   int frame_;
-  float frameWidth_;
   float height_;
+  float frameWidth_;
   float frameHeight_;
   int maxFrames_;
 };

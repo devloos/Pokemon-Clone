@@ -28,9 +28,11 @@ void Start(float &x, float &y, Sprite &nami) {
 }
 
 bool KeysPressedSimultaneously() {
-  return IsKeyDown(KEY_LEFT) && IsKeyDown(KEY_UP) ||
-         IsKeyDown(KEY_LEFT) && IsKeyDown(KEY_DOWN) ||
-         IsKeyDown(KEY_RIGHT) && IsKeyDown(KEY_UP) ||
-         IsKeyDown(KEY_RIGHT) && IsKeyDown(KEY_DOWN);
+  auto TwoKeysPressed = [](const int &KEY_1, const int &KEY_2) {
+    return IsKeyDown(KEY_1) && IsKeyDown(KEY_2);
+  };
+
+  return TwoKeysPressed(KEY_LEFT, KEY_UP) || TwoKeysPressed(KEY_LEFT, KEY_DOWN) ||
+         TwoKeysPressed(KEY_RIGHT, KEY_UP) || TwoKeysPressed(KEY_RIGHT, KEY_DOWN);
 }
 }  // namespace Logic
