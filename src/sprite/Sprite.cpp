@@ -56,3 +56,7 @@ void Sprite::Logic() {
     }
   }
 }
+
+void Sprite::SetDirectionState(const Direction &dir) { DirectionState_ = dir; }
+
+void Sprite::SetInAnimation(const bool &inAnimation) { inAnimation_ = inAnimation; }

@@ -14,11 +14,21 @@ class Sprite {
   void Draw(const float &CENTER_X, const float &CENTER_Y, const float &ROTATION);
   void Logic();
 
-  Direction DirectionState_;
+  // Setters
+  /**
+   * @brief Set the Direction State object
+   *
+   * @param dir
+   */
+  void SetDirectionState(const Direction &dir);
+
+  void SetInAnimation(const bool &inAnimation);
+
   Texture2D SpriteWalking_;
-  bool inAnimation_;
 
  private:
+  Direction DirectionState_;
+  bool inAnimation_;
   // TODO: Clean Up variable names?
   float timer_;
   int frame_;

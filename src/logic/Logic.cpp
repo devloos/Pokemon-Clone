@@ -3,7 +3,7 @@
 namespace Logic {
 void Start(float &x, float &y, Sprite &nami) {
   if (KeysPressedSimultaneously()) {
-    nami.inAnimation_ = false;
+    nami.SetInAnimation(false);
     return;
   }
   Movement(x, y, nami);
@@ -21,22 +21,26 @@ bool KeysPressedSimultaneously() {
 void Movement(float &x, float &y, Sprite &nami) {
   if (IsKeyDown(KEY_LEFT)) {
     x += GetFrameTime() * SPRITE_SPEED;
-    nami.DirectionState_ = Direction::kLeft;
+    nami.SetDirectionState(Direction::kLeft);
+
   } else if (IsKeyDown(KEY_RIGHT)) {
     x -= GetFrameTime() * SPRITE_SPEED;
-    nami.DirectionState_ = Direction::kRight;
+    nami.SetDirectionState(Direction::kRight);
+
   } else if (IsKeyDown(KEY_DOWN)) {
     y -= GetFrameTime() * SPRITE_SPEED;
-    nami.DirectionState_ = Direction::kForward;
+    nami.SetDirectionState(Direction::kBackward);
+
   } else if (IsKeyDown(KEY_UP)) {
     y += GetFrameTime() * SPRITE_SPEED;
-    nami.DirectionState_ = Direction::kBackward;
+    nami.SetDirectionState(Direction::kForward);
+
   } else {
-    nami.inAnimation_ = false;
+    nami.SetInAnimation(false);
     return;
   }
 
-  nami.inAnimation_ = true;
+  nami.SetInAnimation(true);
   return;
 }
 }  // namespace Logic
