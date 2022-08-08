@@ -5,7 +5,7 @@ Sprite::Sprite()
       SpriteWalking_(LoadTexture("../assets/sprites/NamiWalkingState.png")),
       inAnimation_(false) {
   frameWidth_ = SpriteWalking_.width / 3.0f;
-  frameHeight_ = SpriteWalking_.height / 4.0f;
+  frameHeight_ = SpriteWalking_.height / 3.9f;
   maxFrames_ = SpriteWalking_.width / (int)frameWidth_;
 }
 
@@ -20,7 +20,7 @@ void Sprite::Draw(const float &CENTER_X, const float &CENTER_Y, const float &ROT
   DrawTextureTiled(
       SpriteWalking_,
       Rectangle{(frameWidth_ * frame_), height_, frameWidth_, frameHeight_},
-      Rectangle{CENTER_X - 2, CENTER_Y, 24, 34}, Vector2{0, 0}, ROTATION, 1.3f, WHITE);
+      Rectangle{CENTER_X, CENTER_Y, 25, 34}, Vector2{0, 0}, ROTATION, 1.3f, WHITE);
 }
 
 void Sprite::Logic() {
@@ -33,30 +33,12 @@ void Sprite::Logic() {
   frame_ %= maxFrames_;
   // ===============================
 
-  switch (this->DirectionState_) {
-    case Direction::kForward: {
-      height_ = (frameHeight_ * 2.0f);
-      break;
-    }
-    case Direction::kBackward: {
-      height_ = (frameHeight_ * 0.0f);
-      break;
-    }
-    case Direction::kLeft: {
-      height_ = (frameHeight_ * 1.0f);
-      break;
-    }
-    case Direction::kRight: {
-      height_ = (frameHeight_ * 3.0f);
-      break;
-    }
-    default: {
-      height_ = (frameHeight_ * 2.0f);
-      break;
-    }
-  }
+  height_ = (frameHeight_ * FrameRow_);
 }
 
-void Sprite::SetDirectionState(const Direction &dir) { DirectionState_ = dir; }
+void Sprite::SetDirection(const Direction &dir, const float &FrameRow) {
+  DirectionState_ = dir;
+  FrameRow_ = FrameRow;
+}
 
 void Sprite::SetInAnimation(const bool &inAnimation) { inAnimation_ = inAnimation; }

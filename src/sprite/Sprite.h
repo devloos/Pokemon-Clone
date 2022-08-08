@@ -42,7 +42,7 @@ class Sprite {
    *
    * @param dir
    */
-  void SetDirectionState(const Direction &dir);
+  void SetDirection(const Direction &dir, const float &FrameRow);
 
   /**
    * @brief Set the In Animation object
@@ -55,6 +55,7 @@ class Sprite {
   Texture2D SpriteWalking_;
   Direction DirectionState_;
   bool inAnimation_;
+  float FrameRow_;
   // TODO: Clean Up variable names?
   float timer_;
   int frame_;
