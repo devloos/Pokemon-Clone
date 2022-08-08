@@ -1,5 +1,7 @@
 #include "Application.h"
 
+#include "../sprite/Sprite.h"
+
 namespace Application {
 void Start() {
   // Initialization
@@ -13,15 +15,16 @@ void Start() {
   //--------------------------------------------------------------------------------------
 
   Texture2D SafariMap = LoadTexture("../assets/maps/SafariMap.png");
-  Texture2D Nami = LoadTexture("../assets/sprites/Nami.png");
 
   float x = START_X;
   float y = START_Y;
 
+  Sprite nami;
+
   // Main game loop
   while (!WindowShouldClose()) {
-    Logic::Start(x, y);
-    Draw::Start(SafariMap, Nami, x, y);
+    Logic::Start(x, y, nami);
+    Draw::Start(SafariMap, x, y, nami);
   }
 }
 
