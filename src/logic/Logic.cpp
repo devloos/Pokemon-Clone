@@ -2,6 +2,27 @@
 
 namespace Logic {
 void Start(float &x, float &y, Sprite &nami) {
+  if (IsKeyDown(KEY_LEFT) && IsKeyDown(KEY_UP)) {
+    x += GetFrameTime() * -100.0f;
+    y -= GetFrameTime() * +100.0f;
+    nami.m_InAnimation = false;
+  }
+  if (IsKeyDown(KEY_LEFT) && IsKeyDown(KEY_DOWN)) {
+    x -= GetFrameTime() * +100.0f;
+    y += GetFrameTime() * +100.0f;
+    nami.m_InAnimation = false;
+  }
+  if (IsKeyDown(KEY_RIGHT) && IsKeyDown(KEY_UP)) {
+    x -= GetFrameTime() * -100.0f;
+    y += GetFrameTime() * -100.0f;
+    nami.m_InAnimation = false;
+  }
+  if (IsKeyDown(KEY_RIGHT) && IsKeyDown(KEY_DOWN)) {
+    x -= GetFrameTime() * -100.0f;
+    y += GetFrameTime() * +100.0f;
+    nami.m_InAnimation = false;
+  }
+
   if (IsKeyDown(KEY_LEFT)) {
     nami.m_InAnimation = true;
     x += GetFrameTime() * 100.0f;
