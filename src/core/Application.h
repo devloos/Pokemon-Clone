@@ -9,6 +9,8 @@
 #include "../sprite/Sprite.h"
 
 namespace Application {
+const int WIN_WIDTH = 640;
+const int WIN_HEIGHT = 480;
 const float START_X = -800;
 const float START_Y = -1500;
 /**

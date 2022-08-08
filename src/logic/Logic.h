@@ -20,6 +20,15 @@ void Start(float &x, float &y, Sprite &nami);
  * @return false
  */
 bool KeysPressedSimultaneously();
+
+/**
+ * @brief
+ *
+ * @param x
+ * @param y
+ * @param nami
+ */
+void Movement(float &x, float &y, Sprite &nami);
 }  // namespace Logic
 
 #endif  // LOGIC_H_

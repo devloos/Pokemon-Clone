@@ -6,7 +6,19 @@ void Start(float &x, float &y, Sprite &nami) {
     nami.inAnimation_ = false;
     return;
   }
+  Movement(x, y, nami);
+}
 
+bool KeysPressedSimultaneously() {
+  auto TwoKeysPressed = [](const int &KEY_1, const int &KEY_2) {
+    return IsKeyDown(KEY_1) && IsKeyDown(KEY_2);
+  };
+
+  return TwoKeysPressed(KEY_LEFT, KEY_UP) || TwoKeysPressed(KEY_LEFT, KEY_DOWN) ||
+         TwoKeysPressed(KEY_RIGHT, KEY_UP) || TwoKeysPressed(KEY_RIGHT, KEY_DOWN);
+}
+
+void Movement(float &x, float &y, Sprite &nami) {
   if (IsKeyDown(KEY_LEFT)) {
     x += GetFrameTime() * SPRITE_SPEED;
     nami.DirectionState_ = Direction::kLeft;
@@ -23,16 +35,8 @@ void Start(float &x, float &y, Sprite &nami) {
     nami.inAnimation_ = false;
     return;
   }
+
   nami.inAnimation_ = true;
   return;
-}
-
-bool KeysPressedSimultaneously() {
-  auto TwoKeysPressed = [](const int &KEY_1, const int &KEY_2) {
-    return IsKeyDown(KEY_1) && IsKeyDown(KEY_2);
-  };
-
-  return TwoKeysPressed(KEY_LEFT, KEY_UP) || TwoKeysPressed(KEY_LEFT, KEY_DOWN) ||
-         TwoKeysPressed(KEY_RIGHT, KEY_UP) || TwoKeysPressed(KEY_RIGHT, KEY_DOWN);
 }
 }  // namespace Logic

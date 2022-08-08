@@ -2,13 +2,7 @@
 
 namespace Application {
 void Start() {
-  // Initialization
-  //--------------------------------------------------------------------------------------
-  const int screenWidth = 640;
-  const int screenHeight = 480;
-
-  InitWindow(screenWidth, screenHeight, "Pokemon Clone");
-
+  InitWindow(WIN_WIDTH, WIN_HEIGHT, "Pokemon Clone");
   SetTargetFPS(60);  // Set our game to run at 60 frames-per-second
   //--------------------------------------------------------------------------------------
 

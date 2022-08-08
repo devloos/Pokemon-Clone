@@ -19,7 +19,7 @@ void Sprite::Draw(const float &CENTER_X, const float &CENTER_Y, const float &ROT
   }
   DrawTextureTiled(
       SpriteWalking_,
-      Rectangle{(frameWidth_ * frame_), height_, (frameWidth_), (frameHeight_)},
+      Rectangle{(frameWidth_ * frame_), height_, frameWidth_, frameHeight_},
       Rectangle{CENTER_X - 2, CENTER_Y, 24, 34}, Vector2{0, 0}, ROTATION, 1.3f, WHITE);
 }
 
@@ -30,7 +30,7 @@ void Sprite::Logic() {
     timer_ = 0.0f;
     frame_ += 1;
   }
-  frame_ = frame_ % maxFrames_;
+  frame_ %= maxFrames_;
   // ===============================
 
   switch (this->DirectionState_) {
