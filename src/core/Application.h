@@ -6,7 +6,7 @@
 
 #include "../draw/Draw.h"
 #include "../logic/Logic.h"
-#include "../nami/Nami.h"
+#include "../sprite/Sprite.h"
 
 namespace Application {
 const float START_X = -800;

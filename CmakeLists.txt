@@ -8,7 +8,7 @@ project(Pokemon)
 
 add_executable(
   ${PROJECT_NAME} src/core/Pokemon.cpp src/core/Application.cpp
-  src/logic/Logic.cpp src/draw/Draw.cpp src/nami/Nami.cpp)
+  src/logic/Logic.cpp src/draw/Draw.cpp src/sprite/Sprite.cpp)
 
 target_include_directories(
   ${PROJECT_NAME} PUBLIC build/_deps/raylib-src/src include)
