@@ -1,7 +1,5 @@
 #include "Application.h"
 
-#include "../sprite/Sprite.h"
-
 namespace Application {
 void Start() {
   // Initialization

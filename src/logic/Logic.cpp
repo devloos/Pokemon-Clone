@@ -3,27 +3,27 @@
 namespace Logic {
 void Start(float &x, float &y, Sprite &nami) {
   if (KeysPressedSimultaneously()) {
-    nami.m_InAnimation = false;
+    nami.inAnimation_ = false;
     return;
   }
 
   if (IsKeyDown(KEY_LEFT)) {
     x += GetFrameTime() * SPRITE_SPEED;
-    nami.m_StateDir_ = Direction::kLeft;
+    nami.DirectionState_ = Direction::kLeft;
   } else if (IsKeyDown(KEY_RIGHT)) {
     x -= GetFrameTime() * SPRITE_SPEED;
-    nami.m_StateDir_ = Direction::kRight;
+    nami.DirectionState_ = Direction::kRight;
   } else if (IsKeyDown(KEY_DOWN)) {
     y -= GetFrameTime() * SPRITE_SPEED;
-    nami.m_StateDir_ = Direction::kForward;
+    nami.DirectionState_ = Direction::kForward;
   } else if (IsKeyDown(KEY_UP)) {
     y += GetFrameTime() * SPRITE_SPEED;
-    nami.m_StateDir_ = Direction::kBackward;
+    nami.DirectionState_ = Direction::kBackward;
   } else {
-    nami.m_InAnimation = false;
+    nami.inAnimation_ = false;
     return;
   }
-  nami.m_InAnimation = true;
+  nami.inAnimation_ = true;
   return;
 }
 

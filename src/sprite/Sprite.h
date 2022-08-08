@@ -14,11 +14,12 @@ class Sprite {
   void Draw(const float &CENTER_X, const float &CENTER_Y, const float &ROTATION);
   void Logic();
 
-  Direction m_StateDir_;
-  Texture2D NamiWalkingSheet_;
-  bool m_InAnimation;
+  Direction DirectionState_;
+  Texture2D SpriteWalking_;
+  bool inAnimation_;
 
  private:
+  // TODO: Clean Up variable names?
   float timer_;
   int frame_;
   float height_;

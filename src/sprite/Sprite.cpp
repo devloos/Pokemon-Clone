@@ -1,24 +1,24 @@
 #include "Sprite.h"
 
 Sprite::Sprite()
-    : m_StateDir_(Direction::kForward),
-      NamiWalkingSheet_(LoadTexture("../assets/sprites/NamiWalkingState.png")),
-      m_InAnimation(false) {
-  frameWidth_ = NamiWalkingSheet_.width / 3.0f;
-  frameHeight_ = NamiWalkingSheet_.height / 4.0f;
-  maxFrames_ = NamiWalkingSheet_.width / (int)frameWidth_;
+    : DirectionState_(Direction::kForward),
+      SpriteWalking_(LoadTexture("../assets/sprites/NamiWalkingState.png")),
+      inAnimation_(false) {
+  frameWidth_ = SpriteWalking_.width / 3.0f;
+  frameHeight_ = SpriteWalking_.height / 4.0f;
+  maxFrames_ = SpriteWalking_.width / (int)frameWidth_;
 }
 
-Sprite::~Sprite() { UnloadTexture(NamiWalkingSheet_); }
+Sprite::~Sprite() { UnloadTexture(SpriteWalking_); }
 
 void Sprite::Draw(const float &CENTER_X, const float &CENTER_Y, const float &ROTATION) {
-  if (m_InAnimation) {
+  if (inAnimation_) {
     this->Logic();
   } else {
     frame_ = 1;
   }
   DrawTextureTiled(
-      NamiWalkingSheet_,
+      SpriteWalking_,
       Rectangle{(frameWidth_ * frame_), height_, (frameWidth_), (frameHeight_)},
       Rectangle{CENTER_X - 2, CENTER_Y, 24, 34}, Vector2{0, 0}, ROTATION, 1.3f, WHITE);
 }
@@ -33,7 +33,7 @@ void Sprite::Logic() {
   frame_ = frame_ % maxFrames_;
   // ===============================
 
-  switch (this->m_StateDir_) {
+  switch (this->DirectionState_) {
     case Direction::kForward: {
       height_ = (frameHeight_ * 0.0f);
       break;
