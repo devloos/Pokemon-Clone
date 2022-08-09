@@ -4,9 +4,9 @@ Sprite::Sprite()
     : DirectionState_(Direction::kForward),
       SpriteWalking_(LoadTexture("../assets/sprites/NamiWalkingState.png")),
       inAnimation_(false) {
-  frameWidth_ = SpriteWalking_.width / 3.0f;
-  frameHeight_ = SpriteWalking_.height / 3.9f;
-  maxFrames_ = SpriteWalking_.width / (int)frameWidth_;
+  FrameWidth_ = SpriteWalking_.width / 3.0f;
+  FrameHeight_ = SpriteWalking_.height / 4.0f;
+  MaxFrameCols_ = SpriteWalking_.width / (int)FrameWidth_;
 }
 
 Sprite::~Sprite() { UnloadTexture(SpriteWalking_); }
@@ -15,25 +15,25 @@ void Sprite::Draw(const float &CENTER_X, const float &CENTER_Y, const float &ROT
   if (inAnimation_) {
     this->Logic();
   } else {
-    frame_ = 1;
+    FrameCol_ = 1;
   }
   DrawTextureTiled(
       SpriteWalking_,
-      Rectangle{(frameWidth_ * frame_), height_, frameWidth_, frameHeight_},
+      Rectangle{
+          (FrameWidth_ * FrameCol_), (FrameHeight_ * FrameRow_), FrameWidth_,
+          FrameHeight_},
       Rectangle{CENTER_X, CENTER_Y, 25, 34}, Vector2{0, 0}, ROTATION, 1.3f, WHITE);
 }
 
 void Sprite::Logic() {
   // ===============================
-  timer_ += GetFrameTime();
-  if (timer_ >= 0.2f) {
-    timer_ = 0.0f;
-    frame_ += 1;
+  TimePerFrame_ += GetFrameTime();
+  if (TimePerFrame_ >= 0.2f) {
+    TimePerFrame_ = 0.0f;
+    FrameCol_ += 1;
   }
-  frame_ %= maxFrames_;
+  FrameCol_ %= MaxFrameCols_;
   // ===============================
-
-  height_ = (frameHeight_ * FrameRow_);
 }
 
 void Sprite::SetDirection(const Direction &dir, const float &FrameRow) {

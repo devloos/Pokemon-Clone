@@ -5,6 +5,10 @@
 #include "../sprite/Sprite.h"
 namespace Logic {
 const float SPRITE_SPEED = 100.0f;
+const float FRAME_ROW_ONE = 0.0f;
+const float FRAME_ROW_TWO = 1.0f;
+const float FRAME_ROW_THREE = 3.0f;
+const float FRAME_ROW_FOUR = 2.0f;
 /**
  * @brief
  *

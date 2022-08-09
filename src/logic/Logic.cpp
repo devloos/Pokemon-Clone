@@ -21,19 +21,19 @@ bool KeysPressedSimultaneously() {
 void Movement(float &x, float &y, Sprite &nami) {
   if (IsKeyDown(KEY_LEFT)) {
     x += GetFrameTime() * SPRITE_SPEED;
-    nami.SetDirection(Direction::kLeft, 1.0f);
+    nami.SetDirection(Direction::kLeft, FRAME_ROW_TWO);
 
   } else if (IsKeyDown(KEY_RIGHT)) {
     x -= GetFrameTime() * SPRITE_SPEED;
-    nami.SetDirection(Direction::kRight, 3.0f);
+    nami.SetDirection(Direction::kRight, FRAME_ROW_THREE);
 
   } else if (IsKeyDown(KEY_DOWN)) {
     y -= GetFrameTime() * SPRITE_SPEED;
-    nami.SetDirection(Direction::kBackward, 0.0f);
+    nami.SetDirection(Direction::kBackward, FRAME_ROW_ONE);
 
   } else if (IsKeyDown(KEY_UP)) {
     y += GetFrameTime() * SPRITE_SPEED;
-    nami.SetDirection(Direction::kForward, 2.0f);
+    nami.SetDirection(Direction::kForward, FRAME_ROW_FOUR);
 
   } else {
     nami.SetInAnimation(false);

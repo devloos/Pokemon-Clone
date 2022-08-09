@@ -54,15 +54,15 @@ class Sprite {
  private:
   Texture2D SpriteWalking_;
   Direction DirectionState_;
-  bool inAnimation_;
+  float TimePerFrame_;
   float FrameRow_;
-  // TODO: Clean Up variable names?
-  float timer_;
-  int frame_;
-  float height_;
-  float frameWidth_;
-  float frameHeight_;
-  int maxFrames_;
+  float FrameWidth_;
+  float FrameHeight_;
+  int FrameCol_;
+  int MaxFrameCols_;
+
+ public:
+  bool inAnimation_;
 };
 
 #endif  // SPRITE_H_
