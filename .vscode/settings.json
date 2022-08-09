@@ -73,6 +73,18 @@
 		"algorithm": "cpp",
 		"functional": "cpp",
 		"iterator": "cpp",
-		"utility": "cpp"
+		"utility": "cpp",
+		"__tree": "cpp",
+		"condition_variable": "cpp",
+		"deque": "cpp",
+		"fstream": "cpp",
+		"future": "cpp",
+		"iomanip": "cpp",
+		"list": "cpp",
+		"map": "cpp",
+		"numeric": "cpp",
+		"queue": "cpp",
+		"stack": "cpp",
+		"thread": "cpp"
 	},
 }

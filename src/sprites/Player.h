@@ -12,6 +12,7 @@ enum struct Direction { kForward, kBackward, kLeft, kRight };
 enum struct AnimationState { kWalking = 0, kRunning };
 
 struct PlayerTexture {
+  PlayerTexture();
   PlayerTexture(const std::string &Path);
 
   Texture2D Texture_;
@@ -20,6 +21,8 @@ struct PlayerTexture {
   float FrameHeight_;
   int FrameCol_;
   int MaxFrameCols_;
+  float RecWidth;
+  float RecHeight;
 };
 
 class Player {

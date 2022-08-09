@@ -43,6 +43,18 @@ void Movement(float &x, float &y, Player &Nami);
  * @return float
  */
 float GetFrameSpeed(const float &Speed);
+
+/**
+ * @brief Set the Frame Animation object
+ *
+ * @param Nami
+ * @param dir
+ * @param frameRow
+ * @param animationState
+ */
+void SetFrameAnimation(
+    Player &Nami, const Direction &dir, const float &frameRow,
+    const AnimationState &animationState);
 }  // namespace Logic
 
 #endif  // LOGIC_H_

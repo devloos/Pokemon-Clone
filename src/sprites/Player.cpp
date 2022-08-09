@@ -1,5 +1,6 @@
 #include "Player.h"
 
+PlayerTexture::PlayerTexture() {}
 PlayerTexture::PlayerTexture(const std::string &Path) {
   Texture_ = LoadTexture(Path.c_str());
   FrameWidth_ = Texture_.width / 3.0f;
@@ -11,8 +12,15 @@ Player::Player()
     : DirectionState_(Direction::kForward),
       inAnimation_(false),
       Animation_(AnimationState::kWalking) {
-  Textures_[AnimationState::kWalking] = std::string("../assets/sprites/Nami-Walking.png");
-  Textures_[AnimationState::kRunning] = std::string("../assets/sprites/Nami-Running.png");
+  Textures_.emplace(
+      AnimationState::kWalking, PlayerTexture("../assets/sprites/Nami-Walking.png"));
+  Textures_[AnimationState::kWalking].RecWidth = 25.0f;
+  Textures_[AnimationState::kWalking].RecHeight = 34.0f;
+
+  Textures_.emplace(
+      AnimationState::kRunning, PlayerTexture("../assets/sprites/Nami-Running.png"));
+  Textures_[AnimationState::kRunning].RecWidth = 28.0f;
+  Textures_[AnimationState::kRunning].RecHeight = 37.0f;
 }
 
 Player::~Player() {
@@ -24,15 +32,21 @@ void Player::Draw(const float &CENTER_X, const float &CENTER_Y, const float &ROT
   if (inAnimation_) {
     this->Logic();
   } else {
+    Animation_ = AnimationState::kWalking;
     Textures_[Animation_].FrameCol_ = 1;
   }
+  float frameCol = Textures_[Animation_].FrameWidth_ * Textures_[Animation_].FrameCol_;
+  float frameRow = Textures_[Animation_].FrameHeight_ * Textures_[Animation_].FrameRow_;
+
   DrawTextureTiled(
       Textures_[Animation_].Texture_,
       Rectangle{
-          (Textures_[Animation_].FrameWidth_ * Textures_[Animation_].FrameCol_),
-          (Textures_[Animation_].FrameHeight_ * Textures_[Animation_].FrameRow_),
-          Textures_[Animation_].FrameWidth_, Textures_[Animation_].FrameHeight_},
-      Rectangle{CENTER_X, CENTER_Y, 25, 34}, Vector2{0, 0}, ROTATION, 1.3f, WHITE);
+          frameCol, frameRow, Textures_[Animation_].FrameWidth_,
+          Textures_[Animation_].FrameHeight_},
+      Rectangle{
+          CENTER_X, CENTER_Y, Textures_[Animation_].RecWidth,
+          Textures_[Animation_].RecHeight},
+      Vector2{0, 0}, ROTATION, 1.3f, WHITE);
 }
 
 void Player::Logic() {
