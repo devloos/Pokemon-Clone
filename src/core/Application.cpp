@@ -11,12 +11,12 @@ void Start() {
   float x = START_X;
   float y = START_Y;
 
-  Sprite nami;
+  Player Nami;
 
   // Main game loop
   while (!WindowShouldClose()) {
-    Logic::Start(x, y, nami);
-    Draw::Start(SafariMap, x, y, nami);
+    Logic::Start(x, y, Nami);
+    Draw::Start(SafariMap, x, y, Nami);
   }
 }
 

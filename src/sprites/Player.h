@@ -4,22 +4,37 @@
 #include <raylib.h>
 
 #include <iostream>
+#include <unordered_map>
+#include <utility>
+#include <vector>
 
 enum struct Direction { kForward, kBackward, kLeft, kRight };
+enum struct AnimationState { kWalking = 0, kRunning };
 
-class Sprite {
+struct PlayerTexture {
+  PlayerTexture(const std::string &Path);
+
+  Texture2D Texture_;
+  float FrameRow_;
+  float FrameWidth_;
+  float FrameHeight_;
+  int FrameCol_;
+  int MaxFrameCols_;
+};
+
+class Player {
  public:
   /**
-   * @brief Construct a new Sprite object
+   * @brief Construct a new Player object
    *
    */
-  Sprite();
+  Player();
 
   /**
-   * @brief Destroy the Sprite object
+   * @brief Destroy the Player object
    *
    */
-  ~Sprite();
+  ~Player();
 
   /**
    * @brief
@@ -52,16 +67,12 @@ class Sprite {
   void SetInAnimation(const bool &inAnimation);
 
  private:
-  Texture2D SpriteWalking_;
+  std::unordered_map<AnimationState, PlayerTexture> Textures_;
   Direction DirectionState_;
   float TimePerFrame_;
-  float FrameRow_;
-  float FrameWidth_;
-  float FrameHeight_;
-  int FrameCol_;
-  int MaxFrameCols_;
 
  public:
+  AnimationState Animation_;
   bool inAnimation_;
 };
 

@@ -6,7 +6,7 @@
 
 #include "../draw/Draw.h"
 #include "../logic/Logic.h"
-#include "../sprite/Sprite.h"
+#include "../sprites/Player.h"
 
 namespace Application {
 const int WIN_WIDTH = 640;

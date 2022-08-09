@@ -2,9 +2,10 @@
 #define LOGIC_H_
 #include <raylib.h>
 
-#include "../sprite/Sprite.h"
+#include "../sprites/Player.h"
 namespace Logic {
-const float SPRITE_SPEED = 100.0f;
+const float SPRITE_WALKING_SPEED = 100.0f;
+const float SPRITE_RUNNING_SPEED = 150.0f;
 const float FRAME_ROW_ONE = 0.0f;
 const float FRAME_ROW_TWO = 1.0f;
 const float FRAME_ROW_THREE = 3.0f;
@@ -15,7 +16,7 @@ const float FRAME_ROW_FOUR = 2.0f;
  * @param x
  * @param y
  */
-void Start(float &x, float &y, Sprite &nami);
+void Start(float &x, float &y, Player &Nami);
 
 /**
  * @brief
@@ -30,9 +31,18 @@ bool KeysPressedSimultaneously();
  *
  * @param x
  * @param y
- * @param nami
+ * @param Nami
+ * @param Speed
  */
-void Movement(float &x, float &y, Sprite &nami);
+void Movement(float &x, float &y, Player &Nami);
+
+/**
+ * @brief Get the Frame Speed object
+ *
+ * @param Speed
+ * @return float
+ */
+float GetFrameSpeed(const float &Speed);
 }  // namespace Logic
 
 #endif  // LOGIC_H_
