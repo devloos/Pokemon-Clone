@@ -55,6 +55,28 @@ float GetFrameSpeed(const float &Speed);
 void SetFrameAnimation(
     Player &Nami, const Direction &dir, const float &frameRow,
     const AnimationState &animationState);
+
+/**
+ * @brief
+ *
+ * @param x
+ * @param y
+ * @param Nami
+ * @return true
+ * @return false
+ */
+bool IsRunning(float &x, float &y, Player &Nami);
+
+/**
+ * @brief
+ *
+ * @param x
+ * @param y
+ * @param Nami
+ * @return true
+ * @return false
+ */
+bool IsWalking(float &x, float &y, Player &Nami);
 }  // namespace Logic
 
 #endif  // LOGIC_H_
