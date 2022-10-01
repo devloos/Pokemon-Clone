@@ -2,7 +2,10 @@
 #define LOGIC_H_
 #include <raylib.h>
 
+#include <cstdlib>
+
 #include "../sprites/Player.h"
+
 namespace Logic {
 const float SPRITE_WALKING_SPEED = 100.0f;
 const float SPRITE_RUNNING_SPEED = 150.0f;
@@ -77,6 +80,12 @@ bool IsRunning(float &x, float &y, Player &Nami);
  * @return false
  */
 bool IsWalking(float &x, float &y, Player &Nami);
+
+bool IsPlayerRunning(float &y, Player &Nami);
+bool IsPlayerWalking(float &y, Player &Nami);
+
+bool IsPlayerRunningY(float &x, Player &Nami);
+bool IsPlayerWalkingY(float &x, Player &Nami);
 }  // namespace Logic
 
 #endif  // LOGIC_H_

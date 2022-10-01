@@ -11,7 +11,10 @@ PlayerTexture::PlayerTexture(const std::string &Path) {
 Player::Player()
     : DirectionState_(Direction::kForward),
       inAnimation_(false),
-      Animation_(AnimationState::kWalking) {
+      Animation_(AnimationState::kWalking),
+      Zone_(PlayerZone::kFreeZone),
+      PosX_(((640 / 2.0f) - 15)),
+      PosY_((480 / 2.0f) - 20) {
   Textures_.emplace(
       AnimationState::kWalking, PlayerTexture("../assets/sprites/Nami-Walking.png"));
   Textures_[AnimationState::kWalking].RecWidth = 25.0f;
@@ -38,15 +41,27 @@ void Player::Draw(const float &CENTER_X, const float &CENTER_Y, const float &ROT
   float frameCol = Textures_[Animation_].FrameWidth_ * Textures_[Animation_].FrameCol_;
   float frameRow = Textures_[Animation_].FrameHeight_ * Textures_[Animation_].FrameRow_;
 
-  DrawTextureTiled(
-      Textures_[Animation_].Texture_,
-      Rectangle{
-          frameCol, frameRow, Textures_[Animation_].FrameWidth_,
-          Textures_[Animation_].FrameHeight_},
-      Rectangle{
-          CENTER_X, CENTER_Y, Textures_[Animation_].RecWidth,
-          Textures_[Animation_].RecHeight},
-      Vector2{0, 0}, ROTATION, 1.3f, WHITE);
+  if (this->Zone_ == PlayerZone::kFreeZone) {
+    DrawTextureTiled(
+        Textures_[Animation_].Texture_,
+        Rectangle{
+            frameCol, frameRow, Textures_[Animation_].FrameWidth_,
+            Textures_[Animation_].FrameHeight_},
+        Rectangle{
+            CENTER_X, CENTER_Y, Textures_[Animation_].RecWidth,
+            Textures_[Animation_].RecHeight},
+        Vector2{0, 0}, ROTATION, 1.3f, WHITE);
+  } else {
+    DrawTextureTiled(
+        Textures_[Animation_].Texture_,
+        Rectangle{
+            frameCol, frameRow, Textures_[Animation_].FrameWidth_,
+            Textures_[Animation_].FrameHeight_},
+        Rectangle{
+            this->PosX_, this->PosY_, Textures_[Animation_].RecWidth,
+            Textures_[Animation_].RecHeight},
+        Vector2{0, 0}, ROTATION, 1.3f, WHITE);
+  }
 }
 
 void Player::Logic() {
@@ -66,3 +81,7 @@ void Player::SetDirection(const Direction &dir, const float &FrameRow) {
 }
 
 void Player::SetInAnimation(const bool &inAnimation) { inAnimation_ = inAnimation; }
+
+void Player::SetPlayerZone(const PlayerZone &zone) { this->Zone_ = zone; }
+
+PlayerZone Player::GetPlayerZone() const { return this->Zone_; }

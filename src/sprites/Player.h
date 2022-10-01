@@ -10,6 +10,7 @@
 
 enum struct Direction { kForward, kBackward, kLeft, kRight };
 enum struct AnimationState { kWalking = 0, kRunning };
+enum struct PlayerZone { kFreeZone = 0, kZoneLeft, kZoneRight, kZoneTop, kZoneBottom };
 
 struct PlayerTexture {
   PlayerTexture();
@@ -69,12 +70,29 @@ class Player {
    */
   void SetInAnimation(const bool &inAnimation);
 
+  /**
+   * @brief Set the Player Zone object
+   *
+   * @param zone
+   */
+  void SetPlayerZone(const PlayerZone &zone);
+
+  /**
+   * @brief Get the Player Zone object
+   *
+   * @return PlayerZone
+   */
+  PlayerZone GetPlayerZone() const;
+
  private:
   std::unordered_map<AnimationState, PlayerTexture> Textures_;
   Direction DirectionState_;
   float TimePerFrame_;
+  PlayerZone Zone_;
 
  public:
+  float PosX_;
+  float PosY_;
   AnimationState Animation_;
   bool inAnimation_;
 };
